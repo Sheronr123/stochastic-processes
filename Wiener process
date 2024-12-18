@@ -1,0 +1,19 @@
+import numpy as np
+import pandas as pd
+import numpy.random as npr
+import matplotlib.pyplot as plt
+
+def wiener_process(dt=0.1,x0 = 0, n=1000):
+    w = np.zeros(n+1)
+    t = np.linspace(x0,n*dt,n+1)
+    w[1:] = np.cumsum(np.random.normal(0,np.sqrt(dt),n))
+    return t,w
+
+def plot_process(t,w):
+    plt.xlabel('Time(t)')
+    plt.ylabel('Weiner Process w(t)')
+    plt.plot(t,w)
+    plt.show()
+
+    time, data = wiener_process()
+    plot_process(time,data)
